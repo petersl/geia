@@ -1,0 +1,32 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#1D2961",
+    "titleBar.activeBackground": "#293987",
+    "titleBar.activeForeground": "#F9FAFD"
+  },
+  "javascript.suggestionActions.enabled": false,
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+  "[markdown]": {
+    "editor.formatOnSave": true,
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "editor.wordWrap": "off",
+    "editor.rulers": [80],
+    "togglequotes.chars": ["\"", "'", "`"]
+  },
+  "[typescript]": {
+    "editor.codeActionsOnSave": ["source.organizeImports", "source.fixAll.format", "source.fixAll.eslint"],
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.rulers": [120],
+  },
+  "[typescriptreact]": {
+    "editor.codeActionsOnSave": ["source.organizeImports", "source.fixAll.format", "source.fixAll.eslint"],
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.rulers": [120],
+  },
+  "css.validate": false,
+}
