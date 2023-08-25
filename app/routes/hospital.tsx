@@ -13,7 +13,7 @@ import {
   UsersIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
-import { Link, Outlet, useLoaderData } from '@remix-run/react';
+import { Link, NavLink, Outlet, useLoaderData } from '@remix-run/react';
 import type { LoaderArgs } from '@vercel/remix';
 import { json } from '@vercel/remix';
 import { Fragment, useState } from 'react';
@@ -25,12 +25,12 @@ import { getAlertsCountByUser } from '~/models/alers.server';
 import { authenticator } from '~/services/auth.server';
 
 const navigation = [
-  { name: 'Dashboard', to: '/hospital', icon: HomeIcon, current: true },
-  { name: 'Operace', to: '/hospital/surgeries', icon: FolderIcon, current: false },
-  { name: 'Team', to: '/hospital', icon: UsersIcon, current: false },
-  { name: 'Calendar', to: '/hospital', icon: CalendarIcon, current: false },
-  { name: 'Documents', to: '/hospital', icon: DocumentDuplicateIcon, current: false },
-  { name: 'Reports', to: '/hospital', icon: ChartPieIcon, current: false },
+  { name: 'Dashboard', to: '/hospital', icon: HomeIcon, end: true },
+  { name: 'Operace', to: '/hospital/surgeries', icon: FolderIcon, end: false },
+  { name: 'Team', to: '/hospital/team', icon: UsersIcon, end: false },
+  { name: 'Calendar', to: '/hospital/calendar', icon: CalendarIcon, end: false },
+  { name: 'Documents', to: '/hospital/documents', icon: DocumentDuplicateIcon, end: false },
+  { name: 'Reports', to: '/hospital/reports', icon: ChartPieIcon, end: false },
 ];
 
 const userNavigation = [
@@ -103,24 +103,31 @@ export default function HospitalLayout() {
                           <ul className='-mx-2 space-y-1'>
                             {navigation.map((item) => (
                               <li key={item.name}>
-                                <Link
-                                  className={classNames(
-                                    item.current
-                                      ? 'bg-blue-700 text-white'
-                                      : 'text-blue-200 hover:text-white hover:bg-blue-700',
-                                    'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
-                                  )}
+                                <NavLink
+                                  className={({ isActive }) =>
+                                    classNames(
+                                      isActive
+                                        ? 'bg-blue-700 text-white'
+                                        : 'text-blue-200 hover:text-white hover:bg-blue-700',
+                                      'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
+                                    )
+                                  }
+                                  end={item.end}
                                   to={item.to}
                                 >
-                                  <item.icon
-                                    aria-hidden='true'
-                                    className={classNames(
-                                      item.current ? 'text-white' : 'text-blue-200 group-hover:text-white',
-                                      'h-6 w-6 shrink-0',
-                                    )}
-                                  />
-                                  {item.name}
-                                </Link>
+                                  {({ isActive }) => (
+                                    <>
+                                      <item.icon
+                                        aria-hidden='true'
+                                        className={classNames(
+                                          isActive ? 'text-white' : 'text-blue-200 group-hover:text-white',
+                                          'h-6 w-6 shrink-0',
+                                        )}
+                                      />
+                                      {item.name}
+                                    </>
+                                  )}
+                                </NavLink>
                               </li>
                             ))}
                           </ul>
@@ -147,16 +154,16 @@ export default function HospitalLayout() {
                           </li>
                         )}
                         <li className='mt-auto'>
-                          <a
+                          <NavLink
                             className='group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-blue-200 hover:bg-blue-700 hover:text-white'
-                            href='/'
+                            to='/hospital/settings'
                           >
                             <Cog6ToothIcon
                               aria-hidden='true'
                               className='h-6 w-6 shrink-0 text-blue-200 group-hover:text-white'
                             />
                             Settings
-                          </a>
+                          </NavLink>
                         </li>
                       </ul>
                     </nav>
@@ -184,24 +191,29 @@ export default function HospitalLayout() {
                   <ul className='-mx-2 space-y-1'>
                     {navigation.map((item) => (
                       <li key={item.name}>
-                        <Link
-                          className={classNames(
-                            item.current
-                              ? 'bg-blue-700 text-white'
-                              : 'text-blue-200 hover:text-white hover:bg-blue-700',
-                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
-                          )}
+                        <NavLink
+                          className={({ isActive }) =>
+                            classNames(
+                              isActive ? 'bg-blue-700 text-white' : 'text-blue-200 hover:text-white hover:bg-blue-700',
+                              'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
+                            )
+                          }
+                          end={item.end}
                           to={item.to}
                         >
-                          <item.icon
-                            aria-hidden='true'
-                            className={classNames(
-                              item.current ? 'text-white' : 'text-blue-200 group-hover:text-white',
-                              'h-6 w-6 shrink-0',
-                            )}
-                          />
-                          {item.name}
-                        </Link>
+                          {({ isActive }) => (
+                            <>
+                              <item.icon
+                                aria-hidden='true'
+                                className={classNames(
+                                  isActive ? 'text-white' : 'text-blue-200 group-hover:text-white',
+                                  'h-6 w-6 shrink-0',
+                                )}
+                              />
+                              {item.name}
+                            </>
+                          )}
+                        </NavLink>
                       </li>
                     ))}
                   </ul>
@@ -226,16 +238,16 @@ export default function HospitalLayout() {
                   </li>
                 )}
                 <li className='mt-auto'>
-                  <a
+                  <NavLink
                     className='group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-blue-200 hover:bg-blue-700 hover:text-white'
-                    href='/'
+                    to='/hospital/settings'
                   >
                     <Cog6ToothIcon
                       aria-hidden='true'
                       className='h-6 w-6 shrink-0 text-blue-200 group-hover:text-white'
                     />
                     Settings
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </nav>
