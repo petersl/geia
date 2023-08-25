@@ -1,0 +1,6 @@
+.cache
+.husky
+.vscode
+build
+node_modules
+postgres-data

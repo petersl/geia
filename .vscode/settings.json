@@ -5,7 +5,13 @@
     "titleBar.activeForeground": "#F9FAFD"
   },
   "javascript.suggestionActions.enabled": false,
+  "[postcss]": {
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": false
+  },
   "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
   "[markdown]": {
@@ -20,13 +26,13 @@
     "editor.codeActionsOnSave": ["source.organizeImports", "source.fixAll.format", "source.fixAll.eslint"],
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
-    "editor.rulers": [120],
+    "editor.rulers": [120]
   },
   "[typescriptreact]": {
     "editor.codeActionsOnSave": ["source.organizeImports", "source.fixAll.format", "source.fixAll.eslint"],
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
-    "editor.rulers": [120],
+    "editor.rulers": [120]
   },
-  "css.validate": false,
+  "css.validate": false
 }
