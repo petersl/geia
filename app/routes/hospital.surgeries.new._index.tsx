@@ -3,7 +3,7 @@ import PageHeader from '~/components/page-header';
 export default function HospitalSurgeriesNewPage() {
   return (
     <>
-      <PageHeader title={'Nová operace'} />
+      <PageHeader title={'Nová operace - Kolorektalní karcinom'} />
       <ul>
         <li>Vyhledat pacienta</li>
         <li>Vybrat sablonu operace</li>
